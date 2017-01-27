@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CSE361:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CSE361_jar</output-path>
+    <root id="archive" name="CSE361.jar">
+      <element id="module-output" name="CSE361" />
+    </root>
+  </artifact>
+</component>

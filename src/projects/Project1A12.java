@@ -1,10 +1,11 @@
+package projects;
+
 /**
  * Created by jjrobertson on 25/01/17.
  */
-public class devProject1A12 {
-    private int startIndex; //tracks starting position of max sum subbarray
-    private int endIndex;   //tracks ending position of max sum subbarray
+//import org.jfree.chart.plot.Plot;
 
+public class Project1A12 {
     /*
      * generates a 1D array randArray, setting elements to int values between min and max
      */
@@ -16,48 +17,6 @@ public class devProject1A12 {
             randArray[i] = randomNum;
         }
         return randArray;
-    }
-
-    /*
-     * prints a 1D array A
-     */
-    public void printArray(int[] A) {
-        for (int i = 0; i < A.length; i++) {
-            System.out.print(A[i] + " | ");
-        }
-    }
-
-    /*
-     * prints a subarray of array A
-     */
-    public void printSubArray(int[] A) {
-        int n = A.length; //size of A
-
-        //formatting
-        for (int i = 0; i < startIndex; i++) {
-            if (0 <= A[i]  && A[i] < 10)
-                System.out.print(" " + " | ");
-            else if ( (-10 <= A[i] && A[i] < 0) || (A[i] >= 10) )
-                System.out.print("  " + " | ");
-            else
-                System.out.print("   " + " | ");
-        }
-
-        //prints subarray
-        for (int i = startIndex; i <= endIndex; i++) {
-            System.out.print(A[i] + " | ");
-        }
-
-        //formating
-        for (int i = endIndex + 1; i < n; i++) {
-            if (0 <= A[i]  && A[i] < 10)
-                System.out.print(" " + " | ");
-            else if ( (-10 <= A[i] && A[i] < 0) || (A[i] >= 10) )
-                System.out.print("  " + " | ");
-            else
-                System.out.print("   " + " | ");
-        }
-        System.out.println();
     }
 
     /*
@@ -75,8 +34,6 @@ public class devProject1A12 {
                 }
                 if (partSum > max) {
                     max = partSum;
-                    startIndex = j;
-                    endIndex = k;
                 }
             }
         }
@@ -88,22 +45,19 @@ public class devProject1A12 {
      */
     public int MaxsubFaster(int[] A) {
         int n = A.length;
-        int[] S = new int[n + 1]; //array of prefix sums, +1 to make room for S[0] = 0
+        int[] S = new int[n + 1]; //array of index sums, +1 to make room for S[0] = 0
         S[0] = 0; //initial prefix sum
 
         int curSum; //current subbarray sum
         int max = 0; //maximum found so far
 
-
         for (int i = 1; i <= n; i++) {
-            S[i] = S[i - 1] + A[i - 1];
-            System.out.println(i - 1 + " " + A[i - 1] + " " + S[i - 1]);
+            S[i] = S[i-1] + A[i-1];
         }
-        System.out.println(n + " " + "N/A " + S[n]);
 
         for (int j = 1; j <= n; j++) {
             for (int k = j; k <= n; k++) {
-                curSum = S[k] - S[j - 1];
+                curSum = S[k] - S[j-1];
                 if (curSum > max) {
                     max = curSum;
                 }
