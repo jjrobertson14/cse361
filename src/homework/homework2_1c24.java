@@ -44,12 +44,12 @@ public class homework2_1c24 {
     }
 
     static public void print2DArray (int[][] A) {
-        int n = A[0].length;
-        int m = A.length;
+        int n = A.length; //number of rows
+        int m = A[0].length; //number of cols
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                System.out.print(A[i][j]);
+                System.out.print(A[i][j] + " | ");
             }
             System.out.println();
         }
