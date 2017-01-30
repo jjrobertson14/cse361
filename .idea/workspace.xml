@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e79fd29-36aa-4686-b080-b9fdf0ada56d" name="Default" comment="fixed findNumOnes">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CSE361/homework/homework2_1c25.class" afterPath="$PROJECT_DIR$/out/production/CSE361/homework/homework2_1c25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CSE361/main.class" afterPath="$PROJECT_DIR$/out/production/CSE361/main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CSE361/projects/devProject1A12.class" afterPath="$PROJECT_DIR$/out/production/CSE361/projects/devProject1A12.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/homework/homework2_1c25.java" afterPath="$PROJECT_DIR$/src/homework/homework2_1c25.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.java" afterPath="$PROJECT_DIR$/src/main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -487,6 +482,14 @@
       <option name="presentableId" value="Default" />
       <updated>1485200560089</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixed findNumOnes">
+      <created>1485808264197</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1485808264197</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
