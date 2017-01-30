@@ -1,7 +1,7 @@
 package homework;
 
 /**
- * Created by 1234r_000 on 1/26/2017.
+ * Created by jjrobertson14 on 1/26/2017.
  */
 public class homework2_1c25 {
     public int[][] genArray (int size) {
@@ -40,21 +40,32 @@ public class homework2_1c25 {
 
     public int findNumOnes (int[][] A) {
         int numOnes = 0; //accumulates number of 1s
-        int curCol = 0; //holds value of current column
         int size = A.length; //size of the array
+        int curCol = 0; //holds value of current column
+        int curRow = size - 1; //starts at bottom row
 
         /*
          * Start at the bottom row, iterate through the columns of that row until a 0 is found, adding the row number
          * (plus 1) to numOnes, as each row above the current row will have a 1 in that column. Repeat for every row
          * in the array.
          */
-        for (int i = size-1; i >= 0; i--) {
-            while (curCol < size && A[i][curCol] == 1) {
+//        for (int i = size-1; i >= 0; i--) {
+//            while (curCol < size && A[i][curCol] == 1) {
+//                curCol++;
+//                numOnes += i + 1;
+//            }
+//            if(curCol == size)
+//                break;
+//        }
+
+        while (curCol <  size && curRow >= 0) {
+            if(A[curRow][curCol] == 1) {
+                numOnes += curRow + 1;
                 curCol++;
-                numOnes += i + 1;
             }
-            if(curCol == size)
-                break;
+            else {
+                curRow--;
+            }
         }
 
         return numOnes;
