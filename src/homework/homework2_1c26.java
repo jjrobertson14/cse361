@@ -27,18 +27,21 @@ public class homework2_1c26 {
         int m = A[0].length; //number of cols in A, number of rows in B
         int p = B[0].length; //number of cols in B, number of cols in C
 
+        int ops = 0;
+
         int[][] C = new int[n][p]; //resultant matrix
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < p; j++) {
-                for(int k = 0; k < m; k++) {
+        for(int i = 0; i < n; i++) { //iterate rows of C
+            for(int j = 0; j < p; j++) { //iterate cols of C
+                for(int k = 0; k < m; k++) { //iterate over each row of A, and each col of B
                     C[i][j] += A[i][k] * B[k][j];
+                    ops+=5;
                 }
             }
         }
 
         homework2_1c24.print2DArray(C);
-        System.out.println();
+        System.out.println("\n" + ops);
         return C;
     }
 }
