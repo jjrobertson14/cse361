@@ -25,8 +25,8 @@ public class main {
         vals[1] = 5;
         vals[2] = 6;
         vals[3] = 7;
-        ExpressionFinder expFinder = new ExpressionFinder();
-        expFinder.bruteForceExpress(vals, "*/+-");
+        ExpressionFinder expFinder = new ExpressionFinder(vals, "*/+-");
+        expFinder.bruteForceExpress();
 //
 //        Project1A12 pj1 = new Project1A12();
 //        int[] test = pj1.generateArray(20, -25, 25);
