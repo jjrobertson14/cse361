@@ -28,20 +28,20 @@ public class ExpressionFinder {
             for (int j = 0; j < size; j++) {
                 for (int k = 0; k < size; k++) {
                     curCombination = ops.charAt(i) + "" + ops.charAt(j) + "" + ops.charAt(k);
-                    permuteValues(curCombination);
+                    permuteValues(curCombination, initVals);
                     System.out.println(curCombination);
                 }
             }
         }
     }
 
-    private void permuteValues (String curOps) {
-        int[] curValues = initVals;
+    //recursively find all permutations of array of integers
+    private void permuteValues (String curOps, int[] curValues) {
         evaluateExpression(curValues, curOps);
+        
     }
 
     private int evaluateExpression(int[] curValues, String curOps) {
-
         return 0;
     }
 }
