@@ -1,7 +1,7 @@
 package projects;
 
 /**
- * Created by jjrobertson on 25/01/17.
+ * Created by Johnathon Robertson on 25/01/17.
  */
 //import org.jfree.chart.plot.Plot;
 
@@ -72,7 +72,7 @@ public class Project1A12 {
      */
     public int MaxsubFastest(int[] A) {
         int n = A.length;
-        int[] M = new int[n + 1]; //array of suffix sums, +1 to make room for S[0] = 0
+        int[] M = new int[n + 1]; //array of suffix sums, +1 to make room for M[0] = 0
         M[0] = 0;
         int max = 0; //maximum found so far
 
