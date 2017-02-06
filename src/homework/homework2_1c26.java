@@ -1,7 +1,7 @@
 package homework;
 
 /**
- * Created by 1234r_000 on 1/27/2017.
+ * Created by jjrobertson14 on 1/27/2017.
  */
 public class homework2_1c26 {
     public int[][] genArray (int numRows, int numCols, int min, int max) {
