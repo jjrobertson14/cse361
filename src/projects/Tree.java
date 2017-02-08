@@ -23,7 +23,7 @@ public class Tree<E> implements Iterable<String> {
         for(int i = 0; i < specSize; i++) {
             switch (spec.charAt(i)) {
                 case '(' :
-                    //check for empty internal node
+                    //check for empty node
                     if(spec.charAt(i+1) == '(') {
                         emptyNode = true;
                     }
@@ -40,13 +40,13 @@ public class Tree<E> implements Iterable<String> {
                     }
                     depth--;
                     break;
-                default :
+                default : //every other character is part of a node name
                     curNode = curNode + spec.charAt(i);
             }
         }
 
         if(emptyNode) {
-            System.out.println("Invalid tree specification, empty parent node");
+            System.out.println("Invalid tree specification, empty node");
             nodes.clear();
         }
         if(depth < 0) {
@@ -57,7 +57,6 @@ public class Tree<E> implements Iterable<String> {
             System.out.println("Invalid tree specification, add more end parentheses");
             nodes.clear();
         }
-        //turn string into tree?
     }
 
     public Iterator<String> iterator() {
@@ -77,7 +76,7 @@ public class Tree<E> implements Iterable<String> {
             return (index < size); //current index is the index of the next element
         }
 
-        public String next() {
+        public String next() { //next element in preorder traversal
             if (this.hasNext()) {
                 int tempIndex = index;
                 index++;
