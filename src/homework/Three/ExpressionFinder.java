@@ -57,7 +57,7 @@ public class ExpressionFinder {
         int[] tempArray = new int[24];
 
         tempArray[0] = 1;
-        tempArray[1] = 
+        //tempArray[1] =
 
 
         //can't get the recursion to work properly
