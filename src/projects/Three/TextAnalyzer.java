@@ -50,11 +50,6 @@ public class TextAnalyzer {
         }
         catch (FileNotFoundException ex) {System.err.print(f.exists());}
 
-        System.out.println(wordList.size());
-        for( String thing : wordList) {
-            System.out.println(thing);
-        }
-
         return wordList;
     }
 
@@ -71,7 +66,7 @@ public class TextAnalyzer {
                 hm.put(word, new Integer(1));
             }
         }
-
+        
         numWords = hm.size();
         return hm;
     }
