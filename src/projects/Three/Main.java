@@ -8,8 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+        long startTime = System.nanoTime();
         TextAnalyzer  txtA = new TextAnalyzer("input.txt");
-
+        long endTime = System.nanoTime();
+        System.out.println(endTime - startTime);
         System.out.println ("Number of words found = " + txtA.wordCount());
         System.out.println ("Word and frequencies sorted by word frequencies");
         txtA.FreqSort();

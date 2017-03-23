@@ -1,15 +1,15 @@
 package projects.Three;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.*;
 import java.util.regex.Pattern;
+import java.net.URL;
 
 /**
- * Created by 1234r_000 on 2/28/2017.
+ * Created by Johnathon Robertson on 2/28/2017.
  */
 public class TextAnalyzer {
-    private int numWords;
+    private int numWords; //set in hashTokens method called in constructor
     private String fileName;
     private File iFile;
     private Vector<String> inputStrList;
@@ -18,16 +18,20 @@ public class TextAnalyzer {
     private HashMap<String,Integer> wordMap;
 
     /*
-     * constructor, tokens are hashed with the call to hashTokens
+     * constructor, filename can either be an absolute path, or just a file name (if it is in the classpath).
+     * The file is tokenized with the Tokenize method, then the tokens are hashed with the hashTokens method.
      */
     public TextAnalyzer(String fd) {
-        //finds absolute file path by searching the classpath for it
-        URL url = getClass().getResource(fd);
-        fileName = url.getPath();
-        iFile = new File(fileName);
-        inputStrList = new Vector<>();
+        iFile = new File(fd); //used if file name given is the absolute path
+        if(!(iFile.isAbsolute())) {
+            //file name given is not absolute path, so find absolute file path by searching the classpath for it
+            URL url = getClass().getResource(fd);
+            fileName = url.getPath();
+            iFile = new File(fileName);
+        }
 
-        reWordPattern = "([\\w\\-]*)+"; //any amount of words
+        inputStrList = new Vector<>();
+        reWordPattern = "[\\w\\-]*"; //matches single words
         reDelim = "(?!\\-\\w)[\\s\\p{Punct}]+"; //sequence of spaces and/or punctuation except a single "-"
         inputStrList = Tokenize(iFile);
         wordMap = hashTokens(inputStrList);
@@ -57,8 +61,11 @@ public class TextAnalyzer {
      * generates and returns hash map from the vector of word tokens
      */
     private HashMap<String,Integer> hashTokens (Vector<String> wordList) {
-        HashMap<String,Integer> hm = new HashMap<>();
-        for(String word : wordList) {
+        int wordListSize = wordList.size();
+        int hmInitCap = (int) (wordListSize / .75); //.75 is default maximum load factor before the hash map capacity grows
+        HashMap<String,Integer> hm = new HashMap<>(hmInitCap);
+        while (!(wordList.isEmpty())) {
+            String word = wordList.remove(0);
             if(hm.containsKey(word)) {
                 hm.put(word,hm.get(word) + 1);
             }
@@ -66,7 +73,7 @@ public class TextAnalyzer {
                 hm.put(word, new Integer(1));
             }
         }
-        
+
         numWords = hm.size();
         return hm;
     }
@@ -105,15 +112,14 @@ public class TextAnalyzer {
      */
     public void LexiSort() {
 //        KeyValuePQ<String,Integer> pqLex = new KeyValuePQ<>();
-        PriorityQueue<WordNode> pqLexi = new PriorityQueue<WordNode>(new Comparator<WordNode>() {
+        PriorityQueue<WordNode> pqLexi = new PriorityQueue<WordNode>(numWords, new Comparator<WordNode>() {
             @Override
             public int compare(WordNode o1, WordNode o2) {
                 return o1.getKey().compareTo(o2.getKey());
             }
         });
 
-        HashMap<String,Integer> tmpWordMap = wordMap; // to not remove elements from wordMap when iterating over it
-        Set set = tmpWordMap.entrySet();
+        Set set = wordMap.entrySet();
 
         // Get an iterator
         Iterator<Map.Entry> hashIter = set.iterator();
@@ -135,8 +141,7 @@ public class TextAnalyzer {
      * generates priority queue of HashMap elements sorted by frequency (value) and prints each key,value pair
      */
     public void FreqSort() {
-        //        KeyValuePQ<String,Integer> pqLex = new KeyValuePQ<>();
-        PriorityQueue<WordNode> pqFreq = new PriorityQueue<WordNode>(new Comparator<WordNode>() {
+        PriorityQueue<WordNode> pqFreq = new PriorityQueue<WordNode>(numWords, new Comparator<WordNode>() {
             @Override
             public int compare(WordNode o1, WordNode o2) {
                 if (o1.getValue() > o2.getValue()) return  -1;
@@ -145,8 +150,7 @@ public class TextAnalyzer {
             }
         });
 
-        HashMap<String,Integer> tmpWordMap = wordMap; // to not remove elements from wordMap when iterating over it
-        Set set = tmpWordMap.entrySet();
+        Set set = wordMap.entrySet();
 
         // Get an iterator
         Iterator<Map.Entry> hashIter = set.iterator();
@@ -156,7 +160,6 @@ public class TextAnalyzer {
             Map.Entry me = hashIter.next();
             pqFreq.add(new WordNode(me.getKey().toString(), (int)me.getValue()));
         }
-
         WordNode root;
         while ((root = pqFreq.poll()) != null) {
             System.out.print(root.getKey() + ": ");
