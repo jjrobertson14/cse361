@@ -12,8 +12,10 @@ public class Paths {
     private Vertex mPrevVertex;
     private int mVertexCount;
     private int mCurVertex;
-    private Vertex[] mShortestPaths; //stores shortest paths to each Vertex, index is destination node id
-    private PriorityQueue<Vertex> mPathPQ; //used to make greedy choices
+    private int mInf;
+    private Vertex[] mShortestPathsFrom; //stores shortest paths to each Vertex, index is destination vertex id, stores fromVertex's
+    private Vertex[] mShortestPathsTo; //stores shortest paths to each vertex, index is destination vertex id, stores toVertex's
+    private PriorityQueue<Vertex> mPathPQ; //used to make greedy choices, stores toVertex's
 
     //initializes vars and PQ
     public Paths(Graph gr, Integer startVertex) {
@@ -22,7 +24,9 @@ public class Paths {
         mStartVertex = startVertex;
         mVertexCount = mGraph.getVertexCount();
         mCurVertex = mStartVertex;
-        mShortestPaths = new Vertex[mVertexCount + 1];
+        mInf = Integer.MAX_VALUE;
+        mShortestPathsFrom = new Vertex[mVertexCount + 1];
+        mShortestPathsTo = new Vertex[mVertexCount + 1];
         mPathPQ = new PriorityQueue<Vertex>(mVertexCount, new Comparator<Vertex>() {
             @Override
             public int compare(Vertex o1, Vertex o2) {
@@ -35,21 +39,29 @@ public class Paths {
 
 
         //initialize the PQ with all vertexes having distance of infinity
-        for (int i = 2; i <= mVertexCount; i++) {
-            Vertex e = new Vertex();
-            e.mVertId = i;
-            e.mDistance = mVertexCount+1; //set to infinite distance
-            mPathPQ.add(e);
-            e.mVertId = mStartVertex;
-            mShortestPaths[i] = e; //only known path to vertex i is from mStartVertex
+        for (int i = 1; i <= mVertexCount; i++) {
+            //start vertex to start vertex distance is zero
+            Vertex toVertex = new Vertex();
+            if(i == mStartVertex) {
+                toVertex.mVertId = mStartVertex;
+                toVertex.mDistance = 0;
+                mPathPQ.add(toVertex);
+                mPrevVertex = toVertex;
+            }
+            //start vertex to every other vertex distance is unknown (infinite)
+            else {
+                toVertex.mVertId = i;
+                toVertex.mDistance = mInf; //set to infinite distance
+                mPathPQ.add(toVertex);
+            }
+
+            //update mShortestPathsFrom
+            Vertex fromVertex = new Vertex();
+            fromVertex.mVertId = mStartVertex;
+            fromVertex.mDistance = toVertex.mDistance;
+            mShortestPathsFrom[i] = fromVertex; //only known path to vertex i is from mStartVertex
+            mShortestPathsTo[i] = toVertex;
         }
-        //set distance to starting vertex to 0
-        Vertex e = new Vertex();
-        e.mVertId = mStartVertex;
-        e.mDistance = 0;
-        mPathPQ.add(e); //0 distance from mStartVertex to mStartVertex
-        mShortestPaths[e.mVertId] = e;
-        mPrevVertex = e;
 
 
 //        while(!(mPathPQ.isEmpty())) {
@@ -63,7 +75,6 @@ public class Paths {
         if(mPathPQ.isEmpty())
             return null;
         Vertex nextVertex = mPathPQ.poll();
-        mShortestPaths[nextVertex.mVertId] = mPrevVertex;
         mPrevVertex = nextVertex;
         return nextVertex.mVertId;
     }
@@ -74,35 +85,40 @@ public class Paths {
         for (Iterator<Vertex> vertEnum = curAdj.iterator();
              vertEnum.hasNext();)
         {
-
+            //toVertex in current adj of the graph object
             Vertex toVertex = vertEnum.next();
-            int newDist = toVertex.mDistance + mShortestPaths[vert].mDistance;
-            int oldDist = mShortestPaths[toVertex.mVertId].mDistance;
+            int newDist = toVertex.mDistance + mShortestPathsTo[vert].mDistance;
+            int oldDist = mShortestPathsTo[toVertex.mVertId].mDistance;
 
-            //new shortest path to toVert found, update entry with toVert's index in mShortestPaths
+            //new shortest path to toVert found, update appropriate elements in the PQ, mShortestPaths[To/From]
             if(newDist < oldDist) {
+                toVertex = mShortestPathsTo[toVertex.mVertId];
                 mPathPQ.remove(toVertex);
+                toVertex.mDistance = newDist;
+                mPathPQ.add(toVertex);
                 Vertex fromVertex = new Vertex();
                 fromVertex.mVertId = vert;
                 fromVertex.mDistance = newDist;
-                mShortestPaths[toVertex.mVertId] = fromVertex;
-                mPathPQ.add(toVertex);
+                mShortestPathsFrom[toVertex.mVertId] = fromVertex;
+
             }
         }
     }
 
-    //PROBLEM: mShortestPaths is not correct at this point with graph01, works with graph02 o.o
-    public int printShortestPath(Integer endVert) {
-        for (int i = 1; i < mShortestPaths.length; i++) {
-            System.out.println(mShortestPaths[i].mVertId);
-        }
-        System.out.println("------------------");
+    //PROBLEM: mShortestPathsFrom is not correct at this point with graph01, works with graph02 o.o
+    public void printShortestPath(Integer endVert) {
+        recurseShortestPath(endVert);
+        System.out.println(endVert);
+        System.out.println(mShortestPathsFrom[endVert].mVertId);
+    }
+
+    private int recurseShortestPath(Integer endVert) {
         if(endVert == mStartVertex) {
             return endVert;
         }
-        int curVert = printShortestPath(mShortestPaths[endVert].mVertId);
-        System.out.print(curVert + ", ");
-        System.out.print(endVert + ", ");
+        int curVert = recurseShortestPath(mShortestPathsFrom[endVert].mVertId);
+        System.out.print(curVert + " --> ");
+        //System.out.print(endVert + "--> ");
         return endVert;
     }
 }

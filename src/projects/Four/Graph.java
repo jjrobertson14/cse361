@@ -44,11 +44,11 @@ public class Graph {
                     mGraph  = new Vector<LinkedList<Vertex>>(mVertexCount+1);
 
                     for (int i = 0; i <= mVertexCount; i++) {
-
-                        System.out.println (i);
+//
+//                        System.out.println (i);
                         mGraph.add(i, new LinkedList<Vertex>());
                     }
-                    System.out.println ("Size of Vector = " + mGraph.size());
+//                    System.out.println ("Size of Vector = " + mGraph.size());
                     inFile.nextLine();
                 }
                 else if (tok.equals("a"))

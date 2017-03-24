@@ -11,8 +11,6 @@ public class Main {
         // Create Graph Object
 
         Graph   graph = new Graph(grFile);
-//        graph.PrintGraph();
-        System.out.println("=================================================");
         Paths   paths = new Paths(graph, startVertex);
 
         // Go through the relaxation process taking closest vertex from PQ
