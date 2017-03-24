@@ -1,21 +1,16 @@
 package projects.Four;
 
-import  java.util.*;
-import  java.io.*;
-
-import java.lang.reflect.Array;
+import java.io.FileReader;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.Vector;
 
 /**
  * Created by singh on 3/10/17.
  */
 
 public class Graph {
-
-     public class Vertex{
-        Integer     mVertId;
-        Integer     mDistance;
-    }
-
     Vector<LinkedList<Vertex>>      mGraph;
     int                             mVertexCount;
     int                             mEdgeCount;
