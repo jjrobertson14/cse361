@@ -38,7 +38,7 @@ public class Paths {
         });
 
 
-        //initialize the PQ with all vertexes having distance of infinity
+        //initialize the PQ
         for (int i = 1; i <= mVertexCount; i++) {
             //start vertex to start vertex distance is zero
             Vertex toVertex = new Vertex();
@@ -109,7 +109,7 @@ public class Paths {
     public void printShortestPath(Integer endVert) {
         recurseShortestPath(endVert);
         System.out.println(endVert);
-        System.out.println(mShortestPathsFrom[endVert].mVertId);
+        System.out.println("shortest path distance: " + mShortestPathsFrom[endVert].mVertId);
     }
 
     private int recurseShortestPath(Integer endVert) {
