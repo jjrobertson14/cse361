@@ -4,11 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e8e046-ba55-466e-9fb8-8ca23842df40" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/projects/Five/SortMain.java" afterPath="$PROJECT_DIR$/src/projects/Five/SortMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/projects/Five/Sorters.java" afterPath="$PROJECT_DIR$/src/projects/Five/Sorters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/projects/Five/VectorArrayGenerator.java" afterPath="$PROJECT_DIR$/src/projects/Five/VectorArrayGenerator.java" />
-    </list>
+    <list default="true" id="65e8e046-ba55-466e-9fb8-8ca23842df40" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,10 +39,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SortMain.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SortMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/projects/Five/SortMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="-523">
               <caret line="8" column="62" lean-forward="false" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
               <folding />
             </state>
@@ -63,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VectorArrayGenerator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VectorArrayGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/projects/Five/VectorArrayGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
@@ -678,12 +674,6 @@
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/projects/Five/SortMain.java</url>
-          <line>58</line>
-          <properties />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="43" />
     </breakpoint-manager>
@@ -1032,14 +1022,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/projects/Five/SortMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="62" lean-forward="false" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/projects/Five/Sorters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
@@ -1055,6 +1037,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/projects/Five/SortMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-523">
+          <caret line="8" column="62" lean-forward="false" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>
