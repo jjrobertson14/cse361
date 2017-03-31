@@ -10,11 +10,13 @@ public class VectorArrayGenerator {
     int mSmall;
     int mMedium;
     int mLarge;
+    int mNumTests;
 
     public VectorArrayGenerator(int small, int medium, int large) {
         mSmall = small;
         mMedium = medium;
         mLarge = large;
+        mNumTests = 5;
     }
 
     public Vector<Vector<int[]>> Generate() {
@@ -23,7 +25,7 @@ public class VectorArrayGenerator {
 
         //generate arrays
         Vector<int[]> sArrays = new Vector<>();
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= mNumTests; i++) {
             int[] tempArray = new int[mSmall];
             for (int j = 0; j < mSmall; j++)
                 tempArray[j] = r.nextInt();
@@ -32,7 +34,7 @@ public class VectorArrayGenerator {
         arrays.add(sArrays);
 
         Vector<int[]> mArrays = new Vector<>();
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= mNumTests; i++) {
             int[] tempArray = new int[mMedium];
             for (int j = 0; j < mMedium; j++)
                 tempArray[j] = r.nextInt();
@@ -41,7 +43,7 @@ public class VectorArrayGenerator {
         arrays.add(mArrays);
 
         Vector<int[]> lArrays = new Vector<>();
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= mNumTests; i++) {
             int[] tempArray = new int[mLarge];
             for (int j = 0; j < mLarge; j++)
                 tempArray[j] = r.nextInt();

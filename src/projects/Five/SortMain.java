@@ -15,42 +15,56 @@ public class SortMain {
 
         //generate arrays
         Vector<Vector <int[]>> arrays = g.Generate();
-//        for (Vector<int[]> v : arrays) {
-//            for (int[] a : v) {
-//                System.out.println(a.length);
-//            }
-//        }
 
         //mergesorts
         System.out.println("enter mergesort:");
         for (Vector<int[]> v : arrays) {
-            times = new long[v.size()];
             for (int[] a : v) {
                 int[] b = a.clone();
                 start = System.nanoTime();
-                s.mergeSort(b);
+                s.mergeSort(b,0,b.length-1);
                 end = System.nanoTime();
+                for(int i = 0; i < b.length-2; i++)
+                    if(b[i]>b[i+1]) { System.out.println("fail");}
                 total += end - start;
             }
             //print the average
-            System.out.println("average for n = " + v.get(0).length + " = " + total / times.length);
+            System.out.println("average for n = " + v.get(0).length + ":\t" + total / v.size());
+            total = 0;
         }
 
         //heapsorts
         System.out.println("enter heapsort:");
         for (Vector<int[]> v : arrays) {
-            times = new long[v.size()];
             for (int[] a : v) {
                 int[] b = a.clone();
                 start = System.nanoTime();
                 s.heapSort(b);
                 end = System.nanoTime();
+                for(int i = 0; i < b.length-2; i++)
+                    if(b[i]>b[i+1]) { System.out.println("fail");}
                 total += end - start;
             }
             //print the average
-            System.out.println("average for n = " + v.get(0).length + " = " + total / times.length);
+            System.out.println("average for n = " + v.get(0).length + ":\t" + total / v.size());
+            total = 0;
         }
 
         //quicksorts
+        System.out.println("enter quicksort:");
+        for (Vector<int[]> v : arrays) {
+            for (int[] a : v) {
+                int[] b = a.clone();
+                start = System.nanoTime();
+                s.quickSort(b,0,b.length-1);
+                end = System.nanoTime();
+                for(int i = 0; i < b.length-2; i++)
+                    if(b[i]>b[i+1]) { System.out.println("fail");}
+                total += end - start;
+            }
+            //print the average
+            System.out.println("average for n = " + v.get(0).length + ":\t" + total / v.size());
+            total = 0;
+        }
     }
 }
