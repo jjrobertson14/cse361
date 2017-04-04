@@ -28,7 +28,7 @@ public class VectorArrayGenerator {
         for (int i = 1; i <= mNumTests; i++) {
             int[] tempArray = new int[mSmall];
             for (int j = 0; j < mSmall; j++)
-                tempArray[j] = r.nextInt();
+                tempArray[j] = r.nextInt(mSmall);
             sArrays.add(tempArray);
         }
         arrays.add(sArrays);
@@ -37,7 +37,7 @@ public class VectorArrayGenerator {
         for (int i = 1; i <= mNumTests; i++) {
             int[] tempArray = new int[mMedium];
             for (int j = 0; j < mMedium; j++)
-                tempArray[j] = r.nextInt();
+                tempArray[j] = r.nextInt(mMedium);
             mArrays.add(tempArray);
         }
         arrays.add(mArrays);
@@ -46,7 +46,7 @@ public class VectorArrayGenerator {
         for (int i = 1; i <= mNumTests; i++) {
             int[] tempArray = new int[mLarge];
             for (int j = 0; j < mLarge; j++)
-                tempArray[j] = r.nextInt();
+                tempArray[j] = r.nextInt(mLarge);
             lArrays.add(tempArray);
         }
         arrays.add(lArrays);
