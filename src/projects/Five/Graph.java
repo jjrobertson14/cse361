@@ -45,15 +45,11 @@ public class Graph {
                     String code = inFile.next();
                     mVertexCount = inFile.nextInt();
                     mEdgeCount = inFile.nextInt();
-                    System.out.println ("Vertex Count " + mVertexCount);
                     mGraph  = new Vector<LinkedList<projects.Five.Graph.Vertex>>(mVertexCount+1);
 
                     for (int i = 0; i <= mVertexCount; i++) {
-//
-//                        System.out.println (i);
                         mGraph.add(i, new LinkedList<projects.Five.Graph.Vertex>());
                     }
-//                    System.out.println ("Size of Vector = " + mGraph.size());
                     inFile.nextLine();
                 }
                 else if (tok.equals("a"))
@@ -65,7 +61,6 @@ public class Graph {
                     v.mVertId           = toVertex;
                     v.mDistance         = distance;
 
-                    //System.out.println ("From -> " + fromVertex + " to " + toVertex + " Dist " + distance);
                     LinkedList<projects.Five.Graph.Vertex>      adj = mGraph.get(fromVertex);
                     adj.add(v);
                     inFile.nextLine();
@@ -87,7 +82,7 @@ public class Graph {
     void PrintGraph ()
     {
         // Go through the Adjacency Matrix
-
+        System.out.println("Adjacency List for the Graph");
         for (int vert = 1; vert <= mVertexCount; vert++)
         {
             LinkedList<projects.Five.Graph.Vertex> adj = mGraph.get(vert);

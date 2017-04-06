@@ -9,6 +9,7 @@ public class DAG {
     private Graph mGraph;
     private Vector<LinkedList<Graph.Vertex>> mGraphVector;
     private Vector<DAGVertex> mVertexVector;
+    private Vector<DAGVertex> mResultVector;
 
 
 
@@ -16,31 +17,34 @@ public class DAG {
         mGraph = graph;
         mGraphVector = mGraph.getGraph();
         mVertexVector = new Vector<>(mGraphVector.size()+1);
+        mResultVector = new Vector<>(mVertexVector.size());
         makeDAG();
     }
 
     //performs a topological sort on the list of vertices
     public void TopologicalSort() {
         //so we can remove vertices we are done with from consideration
-        Vector<DAGVertex> resultVector = new Vector<>();
+        Vector<DAGVertex> mResultVector = new Vector<>();
         //will function as a queue
         LinkedList<DAGVertex> Q = new LinkedList<>();
         for (DAGVertex v : mVertexVector) {
             if(v.mIn == 0) {
                 Q.add(Q.size(),v);
-                System.out.println(v.mVertId);
             }
         }
 
         while( !(Q.isEmpty())) {
             DAGVertex v = Q.removeFirst();
-            pushBack(v,resultVector);
+            pushBack(v,Q);
         }
 
     }
 
     public void Print() {
-
+        System.out.println("TOPOLOGICAL ORDERING OF VERTICES .. ");
+        for (DAGVertex v : mResultVector) {
+            System.out.print(v.mVertId + " --> ");
+        }
     }
 
     /*
@@ -72,23 +76,19 @@ public class DAG {
                 mVertexVector.get(toVert.mVertId).mIn++;
             }
         }
-
-        for (DAGVertex fromVert : mVertexVector) {
-            System.out.println(fromVert.mVertId + " in = " + fromVert.mIn + " out = " + fromVert.mOut);
-        }
-
     }
 
-    private void pushBack (DAGVertex v, Vector<DAGVertex> resultVector) {
+    private void pushBack (DAGVertex v, LinkedList Q) {
         LinkedList<Graph.Vertex> adj = mGraphVector.get(v.mVertId);
         //iterate through each edge starting at v
         for (Graph.Vertex w : adj) {
-            curIn = 
-            mVertexVector.get(w.mVertId).mIn--;
-            if(mVertexVector.get(w.mVertId))
+            DAGVertex curIn = mVertexVector.get(w.mVertId);
+            curIn.mIn--;
+            if(curIn.mIn == 0) {
+                Q.add(Q.size(),curIn);
+            }
         }
-        mVertexVector.remove(v);
-        resultVector.add(v);
-        System.out.println("done with vertex " + v.mVertId);
+        //mVertexVector.remove(v);
+        mResultVector.add(v);
     }
 }
