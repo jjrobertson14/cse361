@@ -23,8 +23,6 @@ public class DAG {
 
     //performs a topological sort on the list of vertices
     public void TopologicalSort() {
-        //so we can remove vertices we are done with from consideration
-        Vector<DAGVertex> mResultVector = new Vector<>();
         //will function as a queue
         LinkedList<DAGVertex> Q = new LinkedList<>();
         for (DAGVertex v : mVertexVector) {
@@ -78,6 +76,7 @@ public class DAG {
         }
     }
 
+    // done n times
     private void pushBack (DAGVertex v, LinkedList Q) {
         LinkedList<Graph.Vertex> adj = mGraphVector.get(v.mVertId);
         //iterate through each edge starting at v
